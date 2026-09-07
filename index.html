@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amity Realtors LTD - Client Information Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo-slot">
+            <img src="public/logo.png" alt="Amity Realtors LTD" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">AMITY REALTORS</div>
+        </div>
+        <div class="header-text">
+            <h1>Amity Realtors LTD</h1>
+            <p>Client Information Form</p>
+        </div>
+    </div>
+</header>
+
+<main class="page">
+    <div class="intro">
+        <p>Thank you for your interest in Amity Realtors. Please fill in your details below so our team can get in touch with you about your property needs.</p>
+    </div>
+
+    <form id="lead-form" novalidate>
+
+        <!-- Honeypot field: hidden from real users, bots often fill it in -->
+        <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div id="form-alert" class="alert" role="alert" hidden></div>
+
+        <fieldset>
+            <legend>Your Details</legend>
+
+            <div class="form-row">
+                <label for="full_name">Full Name <span class="req">*</span></label>
+                <input type="text" id="full_name" name="full_name" required autocomplete="name">
+            </div>
+
+            <div class="form-row">
+                <label for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="e.g. 0777123456">
+                <small id="phone-status" class="field-status"></small>
+            </div>
+
+            <div class="form-row">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" autocomplete="street-address" placeholder="e.g. Kakoba, Mbarara">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>How Did You Hear About Us?</legend>
+
+            <div class="form-row">
+                <label for="source_choice">Source <span class="req">*</span></label>
+                <select id="source_choice" name="source_choice" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="x">X (Twitter)</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="radio">Radio</option>
+                    <option value="referral">Referral</option>
+                    <option value="broker">Broker</option>
+                    <option value="walk_in">Walk-in</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-row conditional" id="referral-fields" hidden>
+                <label for="source_referral_name">Referral / Broker Name <span class="req">*</span></label>
+                <input type="text" id="source_referral_name" name="source_referral_name">
+            </div>
+
+            <div class="form-row conditional" id="referral-phone-field" hidden>
+                <label for="source_referral_phone">Referral / Broker Phone</label>
+                <input type="tel" id="source_referral_phone" name="source_referral_phone">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>What Are You Looking For?</legend>
+
+            <div class="form-row">
+                <label for="visit_reason">Reason / Interest <span class="req">*</span></label>
+                <input type="text" id="visit_reason" name="visit_reason" required placeholder="e.g. Land Inquiry, Rental, House purchase">
+            </div>
+
+            <div class="form-row">
+                <label for="general_info">Additional Information</label>
+                <textarea id="general_info" name="general_info" rows="4" placeholder="Anything else you'd like us to know"></textarea>
+            </div>
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" id="submit-btn">Submit</button>
+        </div>
+    </form>
+
+    <div id="success-message" class="success-box" hidden>
+        <h2>Thank you!</h2>
+        <p>Your details have been received. A member of our team will reach out to you shortly.</p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2026 Amity Realtors LTD. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
