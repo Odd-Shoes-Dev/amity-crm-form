@@ -27,6 +27,7 @@ const form = document.getElementById('lead-form');
 const submitBtn = document.getElementById('submit-btn');
 const formAlert = document.getElementById('form-alert');
 const successMessage = document.getElementById('success-message');
+const successText = document.getElementById('success-text');
 
 const sourceChoice = document.getElementById('source_choice');
 const referralFields = document.getElementById('referral-fields');
@@ -164,6 +165,10 @@ form.addEventListener('submit', async (event) => {
         const data = await response.json();
 
         if (data.success) {
+            const isExisting = data.data && data.data.is_existing;
+            successText.textContent = isExisting
+                ? 'Looks like we already have your details on file. Thank you, our team will still follow up.'
+                : 'Your details have been received. A member of our team will reach out to you shortly.';
             form.hidden = true;
             successMessage.hidden = false;
         } else {
