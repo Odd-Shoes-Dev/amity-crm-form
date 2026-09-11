@@ -20,6 +20,27 @@ On submit, the form sends a `POST` request with the client's details as
 JSON to the CRM's `leads.php` endpoint (see `apidoc.html` for the full
 API reference). No authentication is required by the API.
 
+The form only asks the client for what's strictly needed to keep it
+quick to fill in:
+
+- Full Name (required)
+- Phone Number (required)
+- Reason / Interest (required)
+- Additional Information (optional)
+
+Fields the CRM API requires but that were deliberately left off the
+form (to keep it short) are sent with fixed defaults instead of being
+asked of the client:
+
+- `source_type` is always sent as `"other"`.
+- `gender` is always sent as `"Other"` rather than the API's own
+  default of `"Male"`, so it reads as unset/unknown in the CRM instead
+  of silently mislabeling clients. Staff can correct both fields later
+  during follow-up if needed.
+
+`address` is optional on the API side and is simply not collected or
+sent at all.
+
 Key behaviors:
 
 - **Duplicate phone numbers**: as the client leaves the phone field, the
@@ -33,12 +54,6 @@ Key behaviors:
 - **Phone number format**: the CRM does not validate or reject
   non-Ugandan phone numbers, so the form does not restrict input either
   (the form is open to all).
-- **Source of the lead**: the on-screen options (X, TikTok, Instagram,
-  YouTube, Radio, Referral, Broker, Walk-in, Other) are more granular
-  than the CRM's `source_type` field allows. All social platforms are
-  sent as `source_type: "social_media"`, with the specific platform
-  recorded in `general_info` (e.g. "Heard about us via: TikTok") so
-  that detail isn't lost.
 - **Bot protection** (client-side only, no third-party service required):
   - A hidden honeypot field (`#website`) that real users never see;
     if it has a value on submit, the submission is silently dropped.
